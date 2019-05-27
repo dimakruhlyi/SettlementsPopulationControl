@@ -34,6 +34,4 @@ class Proxy extends SomeObject
 }
 
 
-
-
 ?>
