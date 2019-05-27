@@ -1,5 +1,6 @@
 <?php
 include ("admin/verification/connect.php");
+include("proxy.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -107,8 +108,6 @@ include ("admin/verification/connect.php");
     $sql_query = "SELECT * FROM settlements";
     $result = $mysqli->query($sql_query);
 
-# $result = mysql_query("SELECT * FROM settlements");
-    #$result = Singleton::getInstance();$
 
     while($row = mysqli_fetch_array($result)){
         $name = $row['name'];
@@ -117,10 +116,14 @@ include ("admin/verification/connect.php");
         $type = $row['type'];
         $url = $row['url'];
 
+        $obj1 = new SomeObject($url);
+        $proxy_obj = new Proxy($obj1);
+        $checked = $proxy_obj->doSomething();
+
         echo " 
              <div align = 'center' style = 'width:300px; height:450px; display:inline-block; 
              border: 5px solid blue; margin-left:8%; font-family: \" AR JULIAN\"; font-size: 30px; margin-bottom: 20px;
-             border-radius: 25px; padding: 3px;' > <img src='$url' alt='Settlement' width='290px' height='300px'><br>
+             border-radius: 25px; padding: 3px;' > <img src='$checked ' alt='Settlement' width='290px' height='300px'><br>
              <span class='descript'>Name: </span> ".$name." <br/><span class='descript'>Country:</span>  ".$country." <br/>
              <span class='descript'>Population:</span> ".$population." <br/><span class='descript'>Type: </span>".$type." <br/>
              
