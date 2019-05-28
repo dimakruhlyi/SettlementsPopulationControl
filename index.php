@@ -2,6 +2,7 @@
 include ("classes/Singleton.php");
 include("classes/Proxy.php");
 include("classes/SettlementInfo.php");
+include ("classes/MyIterator.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -136,7 +137,11 @@ include("classes/SettlementInfo.php");
              </div> ";
 
     }
-// test commit
+    echo "<br/>";
+    $it = new MyIterator($infObj);
+    foreach ($it as $a => $b) {
+        print "$a: $b <br/>";
+    }
     ?>
 
     <footer>
