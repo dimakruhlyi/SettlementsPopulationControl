@@ -1,6 +1,7 @@
 <?php
-include ("admin/verification/connect.php");
-include("proxy.php");
+include ("classes/Singleton.php");
+include("classes/Proxy.php");
+include("classes/SettlementInfo.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -110,13 +111,17 @@ include("proxy.php");
 
 
     while($row = mysqli_fetch_array($result)){
-        $name = $row['name'];
-        $country = $row['country'];
-        $population = $row['population'];
-        $type = $row['type'];
-        $url = $row['url'];
 
-        $obj1 = new SomeObject($url);
+        $infObj = new SettlementInfo();
+
+        $infObj->GetName($row['name']);
+        $infObj->GetCountry($row['country']);
+        $infObj->GetPopulation($row['population']);
+        $infObj->GetType($row['type']);
+        $infObj->GetURL($row['url']);
+
+
+        $obj1 = new SomeObject($infObj->SetURL());
         $proxy_obj = new Proxy($obj1);
         $checked = $proxy_obj->doSomething();
 
@@ -124,8 +129,8 @@ include("proxy.php");
              <div align = 'center' style = 'width:300px; height:450px; display:inline-block; 
              border: 5px solid blue; margin-left:8%; font-family: \" AR JULIAN\"; font-size: 30px; margin-bottom: 20px;
              border-radius: 25px; padding: 3px;' > <img src='$checked ' alt='Settlement' width='290px' height='300px'><br>
-             <span class='descript'>Name: </span> ".$name." <br/><span class='descript'>Country:</span>  ".$country." <br/>
-             <span class='descript'>Population:</span> ".$population." <br/><span class='descript'>Type: </span>".$type." <br/>
+             <span class='descript'>Name: </span> ".$infObj->SetName()." <br/><span class='descript'>Country:</span>  ".$infObj->SetCountry()." <br/>
+             <span class='descript'>Population:</span> ".$infObj->SetPopulation()." <br/><span class='descript'>Type: </span>".$infObj->SetType()." <br/>
              
              
              </div> ";
