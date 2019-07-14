@@ -138,10 +138,10 @@ include ("classes/MyIterator.php");
 
     }
     echo "<br/>";
-    $it = new MyIterator($infObj);
+   /* $it = new MyIterator($infObj);
     foreach ($it as $a => $b) {
         print "$a: $b <br/>";
-    }
+    }*/
     ?>
 
     <footer>

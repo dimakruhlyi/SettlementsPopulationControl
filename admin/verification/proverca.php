@@ -14,7 +14,7 @@ if (isset($_POST['password'])) { $password=$_POST['password']; if ($password =='
 //заносим введенный пользователем пароль в переменную $password, если он пустой, то уничтожаем переменную
 if (empty($login) or empty($password)) //если пользователь не ввел логин или пароль, то выдаем ошибку и останавливаем скрипт
 {
-    exit ("<body style='background-image:url(../img/error.jpg);  /* fallback for old browsers */
+    exit ("<body style='background-image:url('../img/error.jpg');  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #536976, #BBD2C5);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     '><div align='center'><br/><br/><br/><h2>You have not entered all the information, go back and fill in all the fields! <br/>" . "<a href='../index.php' style = 'text-decoration:none; color:blue; font-family:ALGERIAN;'> <b>GO BACK!</b> </a></h2></div></body>");
@@ -29,20 +29,20 @@ $login = trim($login);
 $password = trim($password);
 
 //Подключаемся к базе данных.
-$dbcon = mysql_connect("localhost", "root", "");
-mysql_select_db("settlements", $dbcon);
+$dbcon = mysqli_connect("localhost", "root", "");
+mysqli_select_db($dbcon,"settlements");
 if (!$dbcon)
 {
-    echo "<p>Произошла ошибка при подсоединении к MySQL!</p>".mysql_error(); exit();
+    echo "<p>Произошла ошибка при подсоединении к MySQL!</p>".mysqli_error(); exit();
 } else {
-    if (!mysql_select_db("settlements", $dbcon))
+    if (!mysqli_select_db($dbcon,"settlements"))
     {
         echo("<p>Выбранной базы данных не существует!</p>");
     }
 }
 //извлекаем из базы все данные о пользователе с введенным логином
-$result = mysql_query("SELECT * FROM administrator WHERE login='$login'", $dbcon);
-$myrow = mysql_fetch_array($result);
+$result = mysqli_query($dbcon,"SELECT * FROM administrator WHERE login='$login'");
+$myrow = mysqli_fetch_array($result);
 if (empty($myrow["ps"]))
 {
     //если пользователя с введенным логином не существует
