@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Jul 03, 2019 at 09:42 PM
+-- Generation Time: Jul 16, 2019 at 12:15 AM
 -- Server version: 5.6.41
 -- PHP Version: 7.2.10
 
@@ -68,7 +68,8 @@ INSERT INTO `settlements` (`url`, `name`, `country`, `population`, `type`) VALUE
 ('img/cities/medvyn.jpg', 'Medvyn', 'Ukraine', '708', 'village'),
 ('img/cities/vatutino.jpg', 'Vatutino', 'Ukraine', '1436', 'village'),
 ('img/cities/donetsk.jpg', 'Donetsk', 'Ukraine', '0,918 mln', 'city'),
-('img/cities/odessa.jpg', 'Odessa', 'Ukraine', '1,3 vln', 'city');
+('img/cities/odessa.jpg', 'Odessa', 'Ukraine', '1,3 vln', 'city'),
+('../img/cities/kharkiv.jpg', 'Kharkiv', 'Ukraine', '1,3 mln', 'city');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
