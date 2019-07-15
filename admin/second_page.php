@@ -58,19 +58,19 @@
             echo($errortext);//Выводим текст ошибок.
         } else {
             //Подключаемся к базе данных.
-            $dbcon = mysql_connect("localhost", "root", "");
-            mysql_select_db("settlements", $dbcon);
+            $dbcon = mysqli_connect("localhost", "root", "");
+            mysqli_select_db($dbcon,"settlements");
             if (!$dbcon)
             {
-                echo "<p>Произошла ошибка при подсоединении к MySQL!</p>".mysql_error(); exit();
+                echo "<p>Произошла ошибка при подсоединении к MySQL!</p>".mysqli_error(); exit();
             } else {
-                if (!mysql_select_db("settlements", $dbcon))
+                if (!mysqli_select_db($dbcon,"settlements"))
                 {
                     echo("<p>Выбранной базы данных не существует!</p>");
                 }
             }
             //Выполняем SQL-запрос записывающий данные пользователя в таблицу.
-            $sql = mysql_query("INSERT INTO settlements (url,name,country,population,type) Values ('$image','$name','$country','$population','$type')", $dbcon);
+            $sql = mysqli_query($dbcon,"INSERT INTO settlements (url,name,country,population,type) Values ('$image','$name','$country','$population','$type')");
             #if (!$sql) {echo "Запрос не прошел. Попробуйте еще раз.";}
             if (!$sql) {echo "<script> alert('Such a login exists. Change your login.'); </script>";}
             if ($sql)
@@ -81,7 +81,7 @@ border-radius: 50%;"><h3>
         You have successfully added new settlement!<br/> <a href="../admin/second_page.php" style = "text-decoration:none;"><font color="blue">ADD ONCE</font></a> !</h3></div>
   ');
             }
-            mysql_close($dbcon);//Закрываем соединение MySQL.
+            mysqli_close($dbcon);//Закрываем соединение MySQL.
         }
     }
     if (($_POST && $error) || !$_POST)

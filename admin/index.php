@@ -54,26 +54,26 @@ else  //Иначе.
     $login=$_SESSION['login'];
 
     //Подключаемся к базе данных.
-    $dbcon = mysql_connect("localhost", "root", "");
-    mysql_select_db("settlements", $dbcon);
+    $dbcon = mysqli_connect("localhost", "root", "");
+    mysqli_select_db( $dbcon,"settlements");
     if (!$dbcon)
     {
-        echo "<p>Произошла ошибка при подсоединении к MySQL!</p>".mysql_error(); exit();
+        echo "<p>Произошла ошибка при подсоединении к MySQL!</p>".mysqli_error(); exit();
     } else {
-        if (!mysql_select_db("settlements", $dbcon))
+        if (!mysqli_select_db( $dbcon,"settlements"))
         {
             echo("<p>Выбранной базы данных не существует!</p>");
         }
     }
 //Формирование оператора SQL SELECT
-    $sqlCart = mysql_query("SELECT name FROM administrator WHERE login = '$login'", $dbcon);
+    $sqlCart = mysqli_query( $dbcon,"SELECT name FROM administrator WHERE login = '$login'");
 //Цикл по множеству записей и вывод необходимых записей
-    while($row = mysql_fetch_array($sqlCart))
+    while($row = mysqli_fetch_array($sqlCart))
     {
 //Присваивание записей
         $name = $row['name'];
     }
-    mysql_close($dbcon);
+    mysqli_close($dbcon);
     // Если не пусты, то мы выводим ссылку
     echo "
     <div align='center'
